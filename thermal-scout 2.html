@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
+<title>Thermal Scout</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Thermals">
+<meta name="theme-color" content="#0e1e2e">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<style>
+/* Layout: full-bleed map, a time strip pinned top, an instrument panel pinned bottom like a glider's panel. */
+:root{
+  --bg:#eef2f5; --panel:#ffffff; --ink:#0e1e2e; --muted:#5b6b7a; --line:#d5dde4;
+  --signal:#ff5a1f; --good:#1f9d55; --warn:#d48806; --bad:#d0342c;
+  --display:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --body:"Atkinson Hyperlegible",system-ui,-apple-system,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root{--bg:#081521;--panel:#0e1e2e;--ink:#e8eef3;--muted:#8fa2b3;--line:#22384c;--signal:#ff7a45;--good:#3ccf7d;--warn:#f0b13a;--bad:#ff5d55;color-scheme:dark}}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.4 var(--body);overflow:hidden;-webkit-tap-highlight-color:transparent}
+#map{position:fixed;inset:0;z-index:0;background:var(--bg)}
+.top{position:fixed;left:0;right:0;top:0;z-index:500;padding:calc(env(safe-area-inset-top,0px) + 8px) max(12px,env(safe-area-inset-right,0px)) 8px max(12px,env(safe-area-inset-left,0px));background:color-mix(in srgb,var(--panel) 92%,transparent);border-bottom:1px solid var(--line);display:grid;gap:6px}
+.row{display:flex;align-items:center;gap:8px}
+.brand{font:700 20px/1 var(--display);letter-spacing:.04em;text-transform:uppercase}
+.brand b{color:var(--signal)}
+.status{font-size:12px;color:var(--muted);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;text-align:right}
+.btn{appearance:none;border:1px solid var(--line);background:var(--panel);color:var(--ink);font:700 13px var(--body);border-radius:10px;padding:8px 11px;min-height:38px}
+.btn:active{transform:scale(.97)}
+.btn.on{background:var(--signal);border-color:var(--signal);color:#fff}
+.btn:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+#time{flex:1;accent-color:var(--signal)}
+#timeLbl{font:600 18px var(--display);min-width:92px;text-align:right;font-variant-numeric:tabular-nums}
+.panel{position:fixed;left:0;right:0;bottom:0;z-index:500;background:var(--panel);border-top:1px solid var(--line);padding:10px max(12px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 10px) max(12px,env(safe-area-inset-left,0px));display:grid;grid-template-columns:118px 1fr;gap:12px;box-shadow:0 -6px 24px rgba(0,0,0,.12)}
+.dial{width:118px;height:118px;border-radius:50%;border:2px solid var(--line);position:relative;display:grid;place-items:center;background:radial-gradient(circle,var(--panel) 55%,var(--bg))}
+.dial .n{position:absolute;top:4px;left:50%;transform:translateX(-50%);font:700 12px var(--display);color:var(--muted)}
+#arrow{width:74px;height:74px;transition:transform .4s ease}
+#arrow path{fill:var(--signal)}
+.dial.out #arrow path{fill:var(--bad)}
+.dial.none #arrow{opacity:.15}
+.readout{display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;align-content:center;min-width:0}
+.big{grid-column:1/-1;font:700 34px/1 var(--display);font-variant-numeric:tabular-nums}
+.big small{font-size:16px;color:var(--muted);font-weight:600;margin-left:4px}
+.k{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.v{font:600 20px/1.05 var(--display);font-variant-numeric:tabular-nums}
+.v.good{color:var(--good)}.v.bad{color:var(--bad)}.v.warn{color:var(--warn)}
+.cell{min-width:0}
+.legend{position:fixed;right:max(10px,env(safe-area-inset-right,0px));z-index:450;bottom:calc(env(safe-area-inset-bottom,0px) + 150px);background:color-mix(in srgb,var(--panel) 90%,transparent);border:1px solid var(--line);border-radius:10px;padding:6px 8px;font-size:11px;color:var(--muted);display:grid;gap:3px}
+.legend i{display:inline-block;width:14px;height:10px;border-radius:2px;margin-right:5px;vertical-align:middle}
+.sheet{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,.4);display:flex;align-items:flex-end}
+.sheet .card{background:var(--panel);width:100%;max-height:88%;overflow:auto;border-radius:18px 18px 0 0;padding:18px max(16px,env(safe-area-inset-right,0px)) calc(env(safe-area-inset-bottom,0px) + 18px) max(16px,env(safe-area-inset-left,0px));display:grid;gap:14px}
+.card h2{margin:0;font:700 24px var(--display);text-transform:uppercase;letter-spacing:.04em}
+.field{display:grid;gap:4px}
+.field label{font-weight:700}
+.field .hint{font-size:12px;color:var(--muted)}
+.field input,.field select{font:16px var(--body);padding:10px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.note{font-size:12.5px;color:var(--muted);border-left:3px solid var(--warn);padding-left:10px;max-width:65ch}
+.leaflet-popup-content{font:13px/1.45 var(--body);margin:10px 12px}
+.leaflet-popup-content b{font-family:var(--display);font-size:16px}
+.tmark{width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 0 2px rgba(0,0,0,.35);background:var(--signal)}
+.tmark.out{background:#8a96a3}
+.me{width:18px;height:18px;border-radius:50%;background:#1a73e8;border:3px solid #fff;box-shadow:0 0 0 6px rgba(26,115,232,.25)}
+@media (prefers-reduced-motion:reduce){#arrow{transition:none}}
+</style>
+</head>
+<body>
+<div id="map" aria-label="Thermal map"></div>
+
+<div class="top">
+  <div class="row">
+    <div class="brand">Thermal <b>Scout</b></div>
+    <div class="status" id="status">Starting…</div>
+    <button class="btn" id="refresh" aria-label="Refresh forecast">↻</button>
+    <button class="btn" id="settingsBtn">Setup</button>
+  </div>
+  <div class="row">
+    <input type="range" id="time" min="0" max="0" value="0" aria-label="Forecast hour">
+    <div id="timeLbl">--:--</div>
+  </div>
+</div>
+
+<div class="legend" aria-hidden="true">
+  <div><i style="background:#ffd166"></i>Weak</div>
+  <div><i style="background:#f4842d"></i>Usable</div>
+  <div><i style="background:#d62e4b"></i>Strong</div>
+  <div><i style="background:#7b1fa2"></i>Booming</div>
+</div>
+
+<div class="panel">
+  <div class="dial none" id="dial">
+    <span class="n" id="dialN">N</span>
+    <svg id="arrow" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 4 L78 88 L50 70 L22 88 Z"/></svg>
+  </div>
+  <div class="readout">
+    <div class="big" id="dist">—<small>km</small></div>
+    <div class="cell"><div class="k">Bearing</div><div class="v" id="brg">—</div></div>
+    <div class="cell"><div class="k">Arrive at</div><div class="v" id="arr">—</div></div>
+    <div class="cell"><div class="k">Expected climb</div><div class="v" id="clb">—</div></div>
+    <div class="cell"><div class="k">Usable top</div><div class="v" id="top">—</div></div>
+    <div class="cell"><div class="k">Your height</div><div class="v" id="alt">—</div></div>
+    <div class="cell"><div class="k">Heading</div><div class="v" id="hdg">—</div></div>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" hidden>
+  <div class="card" role="dialog" aria-labelledby="setupTitle">
+    <h2 id="setupTitle">Setup</h2>
+    <div class="row" style="flex-wrap:wrap">
+      <button class="btn" id="compassBtn">Enable compass</button>
+      <button class="btn" id="wakeBtn">Keep screen on</button>
+      <button class="btn" id="demoBtn">Demo at Lasham</button>
+    </div>
+    <div class="field">
+      <label for="units">Units</label>
+      <select id="units"><option value="uk">UK gliding (ft, kt, km)</option><option value="metric">Metric (m, m/s, km)</option></select>
+    </div>
+    <div class="field">
+      <label for="altSrc">Height source</label>
+      <select id="altSrc"><option value="gps">Phone GPS altitude</option><option value="manual">Manual (read from altimeter)</option></select>
+    </div>
+    <div class="field">
+      <label for="manAlt">Manual altitude (QNH, above sea level)</label>
+      <input id="manAlt" type="number" inputmode="numeric" value="3000">
+      <span class="hint" id="manAltHint">Feet</span>
+    </div>
+    <div class="field">
+      <label for="ld">Planning glide ratio (1 : x)</label>
+      <input id="ld" type="number" inputmode="decimal" value="25">
+      <span class="hint">Use well below your polar's best L/D. 25 is cautious for a modern club glider.</span>
+    </div>
+    <div class="field">
+      <label for="vbg">Glide speed (km/h)</label>
+      <input id="vbg" type="number" inputmode="numeric" value="95">
+      <span class="hint">Used to correct the glide for head- or tailwind.</span>
+    </div>
+    <div class="field">
+      <label for="margin">Arrival margin</label>
+      <input id="margin" type="number" inputmode="numeric" value="1000">
+      <span class="hint" id="marginHint">Feet above ground you want left on arrival.</span>
+    </div>
+    <div class="field">
+      <label for="minScore">Minimum thermal score (0–100)</label>
+      <input id="minScore" type="number" inputmode="numeric" value="40">
+    </div>
+    <p class="note">Thermals are estimated from forecast models (Open-Meteo, which uses the Met Office UKV model over the UK), terrain and sun angle. They are not observed. Treat every pointer as a likely area to search, never as a guaranteed climb, and always keep a field or airfield within reach.</p>
+    <button class="btn on" id="closeSheet">Done</button>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+(() => {
+'use strict';
+const $ = id => document.getElementById(id);
+const D2R = Math.PI/180, R2D = 180/Math.PI;
+const clamp = (x,a,b) => Math.max(a, Math.min(b, x));
+const store = {
+  get(k, d){ try { const v = localStorage.getItem('ts.'+k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v){ try { localStorage.setItem('ts.'+k, JSON.stringify(v)); } catch {} }
+};
+
+// ---------- Settings ----------
+const S = Object.assign({units:'uk', altSrc:'gps', manAlt:3000, ld:25, vbg:95, margin:1000, minScore:40}, store.get('settings', {}));
+const FT = 0.3048, KT = 0.514444;
+const toM = x => S.units === 'uk' ? x*FT : x;           // user height units → m
+const fmtAlt = m => m == null ? '—' : S.units === 'uk' ? Math.round(m/FT/10)*10 + ' ft' : Math.round(m) + ' m';
+const fmtClimb = ms => S.units === 'uk' ? (ms/KT).toFixed(1) + ' kt' : ms.toFixed(1) + ' m/s';
+const fmtWind = ms => S.units === 'uk' ? Math.round(ms/KT) + ' kt' : Math.round(ms) + ' m/s';
+const fmtKm = m => m < 10000 ? (m/1000).toFixed(1) : Math.round(m/1000).toString();
+
+// ---------- Geometry ----------
+function hav(a, b){ const R=6371000, dLat=(b.lat-a.lat)*D2R, dLon=(b.lon-a.lon)*D2R;
+  const s = Math.sin(dLat/2)**2 + Math.cos(a.lat*D2R)*Math.cos(b.lat*D2R)*Math.sin(dLon/2)**2; return 2*R*Math.asin(Math.sqrt(s)); }
+function bearing(a, b){ const y=Math.sin((b.lon-a.lon)*D2R)*Math.cos(b.lat*D2R);
+  const x=Math.cos(a.lat*D2R)*Math.sin(b.lat*D2R)-Math.sin(a.lat*D2R)*Math.cos(b.lat*D2R)*Math.cos((b.lon-a.lon)*D2R);
+  return (Math.atan2(y,x)*R2D+360)%360; }
+function offset(p, brgDeg, distM){ const R=6371000, d=distM/R, b=brgDeg*D2R, la=p.lat*D2R, lo=p.lon*D2R;
+  const la2=Math.asin(Math.sin(la)*Math.cos(d)+Math.cos(la)*Math.sin(d)*Math.cos(b));
+  const lo2=lo+Math.atan2(Math.sin(b)*Math.sin(d)*Math.cos(la),Math.cos(d)-Math.sin(la)*Math.sin(la2));
+  return {lat:la2*R2D, lon:lo2*R2D}; }
+
+// Sun position (NOAA-style approximation, good to ~0.5°)
+function sun(lat, lon, date){
+  const n = Math.floor((date - Date.UTC(date.getUTCFullYear(),0,0))/864e5);
+  const g = 2*Math.PI/365*(n-1 + (date.getUTCHours()-12)/24);
+  const eot = 229.18*(0.000075+0.001868*Math.cos(g)-0.032077*Math.sin(g)-0.014615*Math.cos(2*g)-0.040849*Math.sin(2*g));
+  const dec = 0.006918-0.399912*Math.cos(g)+0.070257*Math.sin(g)-0.006758*Math.cos(2*g)+0.000907*Math.sin(2*g)-0.002697*Math.cos(3*g)+0.00148*Math.sin(3*g);
+  const tst = date.getUTCHours()*60 + date.getUTCMinutes() + eot + 4*lon;
+  const ha = (tst/4 - 180)*D2R, la = lat*D2R;
+  const sinEl = Math.sin(la)*Math.sin(dec) + Math.cos(la)*Math.cos(dec)*Math.cos(ha);
+  const el = Math.asin(clamp(sinEl,-1,1));
+  const az = (Math.atan2(Math.sin(ha), Math.cos(ha)*Math.sin(la) - Math.tan(dec)*Math.cos(la))*R2D + 180) % 360;
+  return {el: el*R2D, az};
+}
+
+// ---------- Data ----------
+const GRID_N = 4, GRID_KM = 4;   // 9 × 9 cells, 4 km apart → 32 km square
+const VARS = ['temperature_2m','dew_point_2m','shortwave_radiation','boundary_layer_height','cape','cloud_cover_low','cloud_cover',
+  'wind_speed_10m','wind_direction_10m','temperature_850hPa','wind_speed_850hPa','wind_direction_850hPa'];
+let model = null;   // {center, cells, times, utcOffset, fetchedAt}
+let hourIdx = 0;
+
+async function fetchModel(center){
+  setStatus('Fetching forecast…');
+  const dLat = GRID_KM/111.32, dLon = GRID_KM/(111.32*Math.cos(center.lat*D2R));
+  const pts = [];
+  for (let i=-GRID_N;i<=GRID_N;i++) for (let j=-GRID_N;j<=GRID_N;j++) pts.push({lat:+(center.lat+i*dLat).toFixed(4), lon:+(center.lon+j*dLon).toFixed(4), i, j});
+  const url = 'https://api.open-meteo.com/v1/forecast?latitude=' + pts.map(p=>p.lat).join(',') + '&longitude=' + pts.map(p=>p.lon).join(',') +
+    '&hourly=' + VARS.join(',') + '&wind_speed_unit=ms&timezone=auto&forecast_days=2';
+  const [wx, slopes] = await Promise.all([
+    fetch(url).then(r => { if(!r.ok) throw new Error('Forecast server returned ' + r.status); return r.json(); }),
+    fetchSlopes(pts).catch(() => null)
+  ]);
+  const locs = Array.isArray(wx) ? wx : [wx];
+  const cells = pts.map((p,k) => ({...p, elev: locs[k].elevation ?? 0, h: locs[k].hourly, slope: slopes ? slopes[k] : null}));
+  model = {center, cells, times: locs[0].hourly.time, utcOffset: locs[0].utc_offset_seconds || 0, fetchedAt: Date.now(),
+    dLat, dLon};
+  setupTimeSlider();
+}
+
+// Terrain slope and aspect from a 4-point stencil 600 m around each cell (Open-Meteo 90 m DEM).
+async function fetchSlopes(pts){
+  const STEP = 600, q = [];
+  pts.forEach(p => [0,90,180,270].forEach(b => q.push(offset(p, b, STEP))));
+  const out = [];
+  for (let s=0; s<q.length; s+=100){
+    const chunk = q.slice(s, s+100);
+    out.push(fetch('https://api.open-meteo.com/v1/elevation?latitude=' + chunk.map(c=>c.lat.toFixed(5)).join(',') + '&longitude=' + chunk.map(c=>c.lon.toFixed(5)).join(','))
+      .then(r => r.json()).then(j => j.elevation));
+  }
+  const elev = (await Promise.all(out)).flat();
+  return pts.map((p,k) => {
+    const [n,e,s,w] = elev.slice(k*4, k*4+4);
+    const gx = (e-w)/(2*STEP), gy = (n-s)/(2*STEP);
+    return {slope: Math.atan(Math.hypot(gx,gy)), aspect: (Math.atan2(-gx,-gy)*R2D + 360) % 360};
+  });
+}
+
+// ---------- Thermal physics ----------
+// Convective velocity scale w* = (g/T · Q · zi)^(1/3) (Deardorff), Q = sensible heat flux / ρcp.
+// Sensible heat ≈ 38 % of incoming shortwave, scaled by sun incidence on the local slope.
+function analyse(c, t){
+  const v = k => { const a = c.h[k]; return a ? a[t] : null; };
+  const T = v('temperature_2m'), Td = v('dew_point_2m'), SW = v('shortwave_radiation') ?? 0;
+  if (T == null) return null;
+  const utc = new Date(Date.parse(model.times[t] + 'Z') - model.utcOffset*1000);
+  const s = sun(c.lat, c.lon, utc);
+  let inc = 1;
+  if (c.slope && s.el > 3){
+    const cosI = Math.cos(c.slope.slope)*Math.sin(s.el*D2R) + Math.sin(c.slope.slope)*Math.cos(s.el*D2R)*Math.cos((s.az - c.slope.aspect)*D2R);
+    inc = clamp(cosI / Math.sin(s.el*D2R), 0.5, 1.8);
+  }
+  const T850 = v('temperature_850hPa');
+  let zi = v('boundary_layer_height');
+  if (zi == null) zi = T850 != null ? clamp((T - T850 - 6)*260, 0, 2600) : 800;   // lapse-rate fallback
+  const Q = 0.38*SW*inc/1200;
+  const wstar = (Q > 0 && zi > 50) ? Math.cbrt(9.81/(T+273.15)*Q*zi) : 0;
+  const climb = Math.max(0, wstar - 0.9);                   // minus glider sink while circling
+  const cbase = Math.max(0, 125*(T - (Td ?? T-10)));        // cumulus base AGL, 125 m per °C spread
+  const cuLow = v('cloud_cover_low') ?? 0, cape = v('cape') ?? 0;
+  const cu = cbase < zi && cuLow >= 5;
+  const top = Math.min(zi, cbase || zi);
+  const wind = v('wind_speed_850hPa') ?? (v('wind_speed_10m') ?? 0)*1.4;
+  const wdir = v('wind_direction_850hPa') ?? v('wind_direction_10m') ?? 0;
+  const windF = clamp(1 - (wind - 7)/12, 0.25, 1);
+  const overdev = cape > 1000 || cuLow > 75;
+  let score = (clamp(climb/2.5,0,1)*60 + clamp((top-300)/1500,0,1)*28 + (cu && cuLow <= 60 ? 12 : 0)) * windF * (overdev ? 0.6 : 1);
+  if (s.el < 5) score = 0;
+  return {score: Math.round(clamp(score,0,100)), climb, wstar, zi, cbase, cu, top, wind, wdir, cuLow, cape, overdev, inc, sunEl: s.el};
+}
+
+// Thermals lean downwind. Where the column is at the pilot's height = source + wind × time-to-rise.
+function thermalAtHeight(c, a, hAGL){
+  const rise = Math.max(a.wstar, 0.6);
+  const drift = clamp(a.wind * (Math.max(hAGL, 0)/rise), 0, 8000);
+  return offset(c, (a.wdir + 180) % 360, drift);
+}
+
+// Glide with wind: L/D over the ground = L/D × groundspeed / airspeed.
+function glide(from, altMSL, to, toElev, a){
+  const d = hav(from, to), brg = bearing(from, to);
+  const V = S.vbg/3.6, head = a.wind * Math.cos((a.wdir - brg)*D2R);   // + = headwind
+  const gs = V - head;
+  if (gs <= 2) return {d, brg, arrive: -Infinity};
+  const lost = d / (S.ld * gs / V);
+  return {d, brg, arrive: altMSL - lost - toElev, head};
+}
+
+// ---------- Map ----------
+const map = L.map('map', {zoomControl:false, attributionControl:true}).setView([51.187,-1.033], 10);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:15, attribution:'© OpenStreetMap · Weather: Open-Meteo'}).addTo(map);
+map.attributionControl.setPosition('topleft');
+const heat = L.layerGroup().addTo(map), marks = L.layerGroup().addTo(map);
+let meMarker = null, line = null, followed = false;
+
+function heatColor(s){
+  if (s < 15) return null;
+  if (s < 35) return '#ffd166';
+  if (s < 55) return '#f4842d';
+  if (s < 75) return '#d62e4b';
+  return '#7b1fa2';
+}
+
+// ---------- Position, height and heading ----------
+let pos = null, gpsAlt = null, heading = null, gpsHeading = null, demo = false;
+
+function altMSL(){
+  if (S.altSrc === 'manual' || gpsAlt == null) return toM(+S.manAlt || 0);
+  return gpsAlt;
+}
+
+function startGPS(){
+  if (!('geolocation' in navigator)) { setStatus('No GPS on this device. Use Demo or manual height.'); return; }
+  navigator.geolocation.watchPosition(p => {
+    if (demo) return;
+    pos = {lat:p.coords.latitude, lon:p.coords.longitude};
+    if (p.coords.altitude != null) gpsAlt = p.coords.altitude;
+    if (p.coords.heading != null && !isNaN(p.coords.heading) && (p.coords.speed ?? 0) > 3) gpsHeading = p.coords.heading;
+    onPosition();
+  }, err => {
+    setStatus(err.code === 1 ? 'Location blocked. Allow it in Settings › Safari › Location, or try the demo.' : 'Waiting for GPS…');
+    if (!pos && !model) startDemo(false);
+  }, {enableHighAccuracy:true, maximumAge:5000, timeout:20000});
+}
+
+function startDemo(announce = true){
+  demo = true; pos = {lat:51.187, lon:-1.033};
+  if (S.altSrc === 'gps') { gpsAlt = 900; }
+  if (announce) setStatus('Demo: Lasham Gliding Centre at 900 m');
+  onPosition(true);
+}
+
+async function onPosition(force){
+  if (!pos) return;
+  if (!meMarker) meMarker = L.marker([pos.lat,pos.lon], {icon:L.divIcon({className:'', html:'<div class="me"></div>', iconSize:[18,18]}), zIndexOffset:1000}).addTo(map);
+  else meMarker.setLatLng([pos.lat,pos.lon]);
+  if (!followed) { map.setView([pos.lat,pos.lon], 11); followed = true; }
+  const stale = !model || Date.now() - model.fetchedAt > 20*60e3 || hav(pos, model.center) > 10000;
+  if (force || stale) {
+    try { await fetchModel({...pos}); render(); setStatus('Updated ' + new Date().toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})); }
+    catch(e){ setStatus('Could not load forecast. ' + e.message + '. Tap ↻ to retry.'); }
+  } else updatePointer();
+}
+
+function handleOrientation(e){
+  if (e.webkitCompassHeading != null) heading = e.webkitCompassHeading;
+  else if (e.absolute && e.alpha != null) heading = (360 - e.alpha) % 360;
+  updatePointer();
+}
+async function enableCompass(){
+  try {
+    if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+      const r = await DeviceOrientationEvent.requestPermission(); if (r !== 'granted') throw new Error('denied');
+    }
+    window.addEventListener('deviceorientation', handleOrientation, true);
+    $('compassBtn').classList.add('on'); $('compassBtn').textContent = 'Compass on';
+  } catch { setStatus('Compass not allowed. The arrow will use GPS track when moving.'); }
+}
+
+// ---------- Time ----------
+function setupTimeSlider(){
+  const now = Date.now(); let best = 0, bd = Infinity;
+  model.times.forEach((t,k) => { const ms = Date.parse(t+'Z') - model.utcOffset*1000; const d = Math.abs(ms - now); if (d < bd){bd=d; best=k;} });
+  $('time').max = model.times.length - 1;
+  if (!model._init) { hourIdx = best; model._init = true; }
+  $('time').value = hourIdx; labelTime();
+}
+function labelTime(){
+  if (!model) return;
+  const t = model.times[hourIdx], d = new Date(t + 'Z');
+  const today = new Date(Date.now() + model.utcOffset*1000).toISOString().slice(0,10);
+  $('timeLbl').textContent = (t.slice(0,10) === today ? 'Today ' : 'Tmrw ') + t.slice(11,16);
+}
+
+// ---------- Render ----------
+let analysed = [];
+function render(){
+  if (!model) return;
+  heat.clearLayers();
+  analysed = model.cells.map(c => ({c, a: analyse(c, hourIdx)}));
+  const hl = model.dLat/2, hw = model.dLon/2;
+  analysed.forEach(({c,a}) => {
+    if (!a) return;
+    const col = heatColor(a.score);
+    const rect = L.rectangle([[c.lat-hl, c.lon-hw],[c.lat+hl, c.lon+hw]], {stroke:false, fillColor: col || '#000', fillOpacity: col ? 0.18 + a.score/220 : 0, interactive:true});
+    rect.bindPopup(() => popupHtml(c,a));
+    heat.addLayer(rect);
+  });
+  updatePointer();
+}
+
+function popupHtml(c,a){
+  return `<b>Score ${a.score}/100</b><br>
+  Climb ≈ ${fmtClimb(a.climb)} (w* ${a.wstar.toFixed(1)} m/s)<br>
+  Usable to ${fmtAlt(c.elev + a.top)} ${a.cu ? '· cumulus base' : '· blue, top of mixing'}<br>
+  Cloud base ${fmtAlt(c.elev + a.cbase)} · low cloud ${Math.round(a.cuLow)}%<br>
+  Wind aloft ${fmtWind(a.wind)} from ${Math.round(a.wdir)}°<br>
+  Ground ${fmtAlt(c.elev)} · sun on slope ×${a.inc.toFixed(2)}${a.overdev ? '<br><span style="color:#d0342c">Risk of overdevelopment or spread-out</span>' : ''}`;
+}
+
+function updatePointer(){
+  marks.clearLayers(); if (line) { map.removeLayer(line); line = null; }
+  const alt = altMSL();
+  $('alt').textContent = fmtAlt(alt) + (S.altSrc === 'gps' && gpsAlt != null && !demo ? '' : S.altSrc === 'manual' ? ' (man)' : '');
+  const h = heading ?? gpsHeading;
+  $('hdg').textContent = h == null ? 'N-up' : Math.round(h) + '°';
+  if (!model || !pos || !analysed.length) return;
+
+  // Local ground elevation from the nearest cell
+  let here = analysed[0]; let hd = Infinity;
+  analysed.forEach(x => { const d = hav(pos, x.c); if (d < hd){hd=d; here=x;} });
+  const hAGL = alt - here.c.elev;
+
+  const cands = [];
+  analysed.forEach(({c,a}) => {
+    if (!a || a.score < S.minScore) return;
+    const p = thermalAtHeight(c, a, hAGL);
+    const g = glide(pos, alt, p, c.elev, a);
+    const ok = g.arrive >= toM(+S.margin || 0);
+    cands.push({c,a,p,g,ok});
+    const m = L.marker([p.lat,p.lon], {icon:L.divIcon({className:'', html:`<div class="tmark ${ok?'':'out'}"></div>`, iconSize:[22,22]})});
+    m.bindPopup(() => popupHtml(c,a) + `<br><br>${fmtKm(g.d)} km at ${Math.round(g.brg)}° · arrive ${fmtAlt(c.elev + g.arrive)} (${fmtAlt(g.arrive)} AGL)`);
+    marks.addLayer(m);
+  });
+
+  const reach = cands.filter(x => x.ok).sort((x,y) => x.g.d - y.g.d);
+  const t = reach[0] || cands.sort((x,y) => x.g.d - y.g.d)[0];
+  const dial = $('dial');
+  if (!t){
+    dial.className = 'dial none';
+    $('dist').innerHTML = 'None<small>above score ' + S.minScore + '</small>';
+    ['brg','arr','clb','top'].forEach(k => { $(k).textContent = '—'; $(k).className = 'v'; });
+    return;
+  }
+  dial.className = 'dial' + (t.ok ? '' : ' out');
+  const rot = h == null ? t.g.brg : (t.g.brg - h + 360) % 360;
+  $('arrow').style.transform = `rotate(${rot}deg)`;
+  $('dialN').style.visibility = h == null ? 'visible' : 'hidden';
+  $('dist').innerHTML = fmtKm(t.g.d) + '<small>km' + (t.ok ? '' : ' · out of reach') + '</small>';
+  $('brg').textContent = Math.round(t.g.brg) + '°';
+  $('arr').textContent = isFinite(t.g.arrive) ? fmtAlt(t.g.arrive) + ' AGL' : 'No';
+  $('arr').className = 'v ' + (t.ok ? 'good' : 'bad');
+  $('clb').textContent = fmtClimb(t.a.climb);
+  $('clb').className = 'v ' + (t.a.climb >= 1.5 ? 'good' : t.a.climb >= 0.7 ? '' : 'warn');
+  $('top').textContent = fmtAlt(t.c.elev + t.a.top);
+  $('top').className = 'v';
+  line = L.polyline([[pos.lat,pos.lon],[t.p.lat,t.p.lon]], {color: t.ok ? '#ff5a1f' : '#d0342c', weight:3, dashArray:'6 6'}).addTo(map);
+}
+
+function setStatus(s){ $('status').textContent = s; }
+
+// ---------- UI wiring ----------
+function syncSettingsUI(){
+  ['units','altSrc','manAlt','ld','vbg','margin','minScore'].forEach(k => $(k).value = S[k]);
+  $('manAltHint').textContent = S.units === 'uk' ? 'Feet' : 'Metres';
+  $('marginHint').textContent = (S.units === 'uk' ? 'Feet' : 'Metres') + ' above ground you want left on arrival.';
+}
+['units','altSrc','manAlt','ld','vbg','margin','minScore'].forEach(k => $(k).addEventListener('change', () => {
+  const val = $(k).value;
+  if (k === 'units' && val !== S.units){            // convert stored heights to the new unit
+    const f = val === 'uk' ? 1/FT : FT;
+    S.manAlt = Math.round(S.manAlt*f); S.margin = Math.round(S.margin*f);
+  }
+  S[k] = (k === 'units' || k === 'altSrc') ? val : +val;
+  store.set('settings', S); syncSettingsUI(); render();
+}));
+$('settingsBtn').onclick = () => { syncSettingsUI(); $('sheet').hidden = false; };
+$('closeSheet').onclick = () => { $('sheet').hidden = true; };
+$('sheet').addEventListener('click', e => { if (e.target === $('sheet')) $('sheet').hidden = true; });
+$('compassBtn').onclick = enableCompass;
+$('demoBtn').onclick = () => { $('sheet').hidden = true; followed = false; startDemo(); };
+$('refresh').onclick = () => { if (pos) onPosition(true); };
+$('time').addEventListener('input', e => { hourIdx = +e.target.value; labelTime(); render(); });
+let wake = null;
+$('wakeBtn').onclick = async () => {
+  try { wake = await navigator.wakeLock.request('screen'); $('wakeBtn').classList.add('on'); $('wakeBtn').textContent = 'Screen stays on';
+    document.addEventListener('visibilitychange', async () => { if (document.visibilityState === 'visible' && wake) wake = await navigator.wakeLock.request('screen').catch(()=>null); });
+  } catch { setStatus('This phone did not allow keeping the screen on.'); }
+};
+setInterval(() => { if (pos && model && Date.now() - model.fetchedAt > 20*60e3) onPosition(true); }, 60e3);
+
+syncSettingsUI();
+startGPS();
+})();
+</script>
+</body>
+</html>
